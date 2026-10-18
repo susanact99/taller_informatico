@@ -1,0 +1,20 @@
+[
+    {
+        "id": "1",
+        "cliente_id": "1",
+        "tecnico_id": null,
+        "equipo": "ordenador",
+        "descripcion": "pantalla rota",
+        "estado": "pendiente",
+        "coste": 100.0
+    },
+    {
+        "id": "2",
+        "cliente_id": "2",
+        "tecnico_id": "1",
+        "equipo": "Ordenador",
+        "descripcion": "Cambio de RAM",
+        "estado": "pendiente",
+        "coste": 100.0
+    }
+]
