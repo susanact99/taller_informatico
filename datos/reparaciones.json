@@ -2,11 +2,11 @@
     {
         "id": "1",
         "cliente_id": "1",
-        "tecnico_id": null,
+        "tecnico_id": "2",
         "equipo": "ordenador",
         "descripcion": "pantalla rota",
-        "estado": "pendiente",
-        "coste": 100.0
+        "estado": "en proceso",
+        "coste": 500.0
     },
     {
         "id": "2",
@@ -16,5 +16,14 @@
         "descripcion": "Cambio de RAM",
         "estado": "pendiente",
         "coste": 100.0
+    },
+    {
+        "id": "3",
+        "cliente_id": "1",
+        "tecnico_id": "1",
+        "equipo": "ordenador",
+        "descripcion": "Se rompio, no se sabe por qué",
+        "estado": "pendiente",
+        "coste": 200.0
     }
 ]
