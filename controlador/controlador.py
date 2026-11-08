@@ -5,6 +5,7 @@ from vista.dialogo_asignar_tecnico import Ui_Dialog_asignar_tecnico
 from vista.dialogo_modificar_coste import Ui_dialogo_modificar_coste
 from vista.dialogo_aniadir_reparacion import Ui_dialog_agregar_reparacion
 from vista.dialogo_cambiar_estado import Ui_dialogo_cambiar_estado
+from vista.dialogo_agregar_cliente import Ui_dialogo_agregar_cliente
 from vista.ventana_principal import Ui_MainWindow
 from modelos.cliente import Cliente
 from modelos.tecnico import Tecnico
@@ -26,7 +27,10 @@ class Controlador(QMainWindow):
         self.ui.asignar_tecnico.clicked.connect(self.abrir_dialogo_asignar_tecnico)
         self.ui.modificar_coste.clicked.connect(self.abrir_dialogo_modificar_coste)
         self.ui.cambiar_estado.clicked.connect(self.abrir_dialogo_cambiar_estado)
-        self.ui.estafos_filtro.currentTextChanged.connect(self.filtrar_reparaciones_estado)
+        self.ui.estados_filtro.currentTextChanged.connect(self.filtrar_reparaciones_estado)
+        self.ui.listar_clientes.clicked.connect(self.listar_todos_clientes)
+        self.ui.aniadir_cliente.clicked.connect(self.abrir_dialogo_agregar_cliente)
+        self.ui.buscar_nombre_client.clicked.connect(self.buscar_cliente_nombre)
 
     def abrir_dialogo_reparacion(self):
         dialogo = QDialog(self)
@@ -297,6 +301,108 @@ class Controlador(QMainWindow):
                 reparaciones_filtradas.append(reparacion)
 
         self.mostrar_reparaciones(reparaciones_filtradas)
+
+    def listar_todos_clientes(self):
+        clientes = self.taller.listar_clientes()
+        tabla = self.ui.tabla_clientes
+
+        tabla.setRowCount(len(clientes))
+
+        for fila, cliente in enumerate(clientes):
+            tabla.setItem(fila, 0,QTableWidgetItem(str(cliente.id)))
+            tabla.setItem(fila, 1,QTableWidgetItem(cliente.nombre))
+            tabla.setItem(fila, 2,QTableWidgetItem(cliente.correo))
+            tabla.setItem(fila, 3,QTableWidgetItem(cliente.telefono))
+
+    def abrir_dialogo_agregar_cliente(self):
+        dialogo = QDialog(self)
+        ui = Ui_dialogo_agregar_cliente()
+        ui.setupUi(dialogo)
+
+        clientes = self.taller.listar_clientes()
+
+        ids = []
+        for cliente in clientes:
+            try:
+                ids.append(int(cliente.id))
+            except ValueError:
+                pass
+
+        if len(ids) > 0:
+            nuevo_id = max(ids) + 1
+        else:
+            nuevo_id = 1
+
+        ui.agregar_cliente_id.setText(str(nuevo_id))
+
+        resultado = dialogo.exec()
+
+        if resultado == QDialog.DialogCode.Accepted:
+            id_cliente = ui.agregar_cliente_id.text().strip()
+            nombre = ui.agregar_cliente_nombre.text().strip()
+            correo = ui.agregar_cliente_correo.text().strip()
+            telefono = ui.agregar_cliente_telefono.text().strip()
+            if (
+                    id_cliente == ""
+                    or nombre == ""
+                    or correo == ""
+                    or telefono == ""
+            ):
+                QMessageBox.warning(self,"Error",
+                    "Debes rellenar todos los campos.")
+                return
+
+            try:
+                id_cliente = int(id_cliente)
+            except ValueError:
+                QMessageBox.warning(self,"Error",
+                    "El ID debe ser un número entero.")
+                return
+
+            for cliente in self.taller.listar_clientes():
+                if cliente.id == id_cliente:
+                    QMessageBox.warning(self,"Error",
+                        "Ya existe un cliente con ese ID.")
+                    return
+
+            cliente = Cliente(id_cliente,nombre,correo,telefono)
+
+            self.taller.alta_cliente(cliente)
+
+            guardar_taller(self.taller)
+
+            QMessageBox.information(self,"Cliente añadido",
+                "El cliente se ha añadido correctamente.")
+
+            self.listar_todos_clientes()
+
+    def buscar_cliente_nombre(self):
+        nombre_buscar = self.ui.nombre_client_filtro.text().strip().lower()
+
+        if nombre_buscar == "":
+            QMessageBox.warning(self,"Error",
+                "Debes introducir un nombre para buscar.")
+            return
+
+        clientes = self.taller.listar_clientes()
+        clientes_encontrados = []
+
+        for cliente in clientes:
+            if nombre_buscar in cliente.nombre.lower():
+                clientes_encontrados.append(cliente)
+
+        tabla = self.ui.tabla_clientes
+        tabla.setRowCount(len(clientes_encontrados))
+
+        for fila, cliente in enumerate(clientes_encontrados):
+            tabla.setItem(fila, 0,QTableWidgetItem(str(cliente.id)))
+            tabla.setItem(fila, 1,QTableWidgetItem(cliente.nombre))
+            tabla.setItem(fila, 2,QTableWidgetItem(cliente.correo))
+            tabla.setItem(fila, 3,QTableWidgetItem(cliente.telefono))
+
+        if len(clientes_encontrados) == 0:
+            QMessageBox.information(self,"Búsqueda",
+                                    "No se encontraron clientes con ese nombre.")
 
 def main():
     app = QApplication(sys.argv)

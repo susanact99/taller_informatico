@@ -260,7 +260,7 @@
      <attribute name="title">
       <string>Clientes 🙍🏻‍♂️</string>
      </attribute>
-     <widget class="QTableWidget" name="tableWidget">
+     <widget class="QTableWidget" name="tabla_clientes">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -357,7 +357,7 @@
      <attribute name="title">
       <string>Técnicos 👷🏻‍♂️</string>
      </attribute>
-     <widget class="QTableWidget" name="tableWidget_2">
+     <widget class="QTableWidget" name="tabla_tecnicos">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -418,7 +418,7 @@
        <string>Buscar 🔍</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="agregar_tecnico">
       <property name="geometry">
        <rect>
         <x>360</x>
@@ -431,7 +431,7 @@
        <string>Añadir técnico</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="listar_tecnicos">
       <property name="geometry">
        <rect>
         <x>470</x>
