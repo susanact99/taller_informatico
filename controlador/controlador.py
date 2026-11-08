@@ -6,6 +6,7 @@ from vista.dialogo_modificar_coste import Ui_dialogo_modificar_coste
 from vista.dialogo_aniadir_reparacion import Ui_dialog_agregar_reparacion
 from vista.dialogo_cambiar_estado import Ui_dialogo_cambiar_estado
 from vista.dialogo_agregar_cliente import Ui_dialogo_agregar_cliente
+from vista.dialogo_agregar_tecnico import Ui_dialogo_agregar_tecnico
 from vista.ventana_principal import Ui_MainWindow
 from modelos.cliente import Cliente
 from modelos.tecnico import Tecnico
@@ -31,6 +32,9 @@ class Controlador(QMainWindow):
         self.ui.listar_clientes.clicked.connect(self.listar_todos_clientes)
         self.ui.aniadir_cliente.clicked.connect(self.abrir_dialogo_agregar_cliente)
         self.ui.buscar_nombre_client.clicked.connect(self.buscar_cliente_nombre)
+        self.ui.buscar_tec_nombre.clicked.connect(self.buscar_tecnico_nombre)
+        self.ui.listar_tecnicos.clicked.connect(self.listar_todos_tecnicos)
+        self.ui.agregar_tecnico.clicked.connect(self.abrir_dialogo_agregar_tecnico)
 
     def abrir_dialogo_reparacion(self):
         dialogo = QDialog(self)
@@ -403,6 +407,102 @@ class Controlador(QMainWindow):
         if len(clientes_encontrados) == 0:
             QMessageBox.information(self,"Búsqueda",
                                     "No se encontraron clientes con ese nombre.")
+
+    def listar_todos_tecnicos(self):
+        tecnicos = self.taller.listar_tecnicos()
+        tabla = self.ui.tabla_tecnicos
+
+        tabla.setRowCount(len(tecnicos))
+        for fila, tecnico in enumerate(tecnicos):
+            tabla.setItem(fila, 0,QTableWidgetItem(str(tecnico.id)))
+            tabla.setItem(fila, 1,QTableWidgetItem(tecnico.nombre))
+            tabla.setItem(fila, 2,QTableWidgetItem(tecnico.especialidad))
+
+    def buscar_tecnico_nombre(self):
+        nombre_buscar = self.ui.input_busc_nom_tec.text().strip().lower()
+        if nombre_buscar == "":
+            QMessageBox.warning(self,"Error",
+                "Debes introducir un nombre para buscar.")
+            return
+
+        tecnicos = self.taller.listar_tecnicos()
+
+        tecnicos_encontrados = []
+
+        for tecnico in tecnicos:
+            if nombre_buscar in tecnico.nombre.lower():
+                tecnicos_encontrados.append(tecnico)
+
+        tabla = self.ui.tabla_tecnicos
+
+        tabla.setRowCount(len(tecnicos_encontrados))
+
+        for fila, tecnico in enumerate(tecnicos_encontrados):
+            tabla.setItem(fila, 0,QTableWidgetItem(str(tecnico.id)))
+            tabla.setItem(fila, 1,QTableWidgetItem(tecnico.nombre))
+            tabla.setItem(fila, 2,QTableWidgetItem(tecnico.especialidad))
+
+        if len(tecnicos_encontrados) == 0:
+            QMessageBox.information(self,"Búsqueda",
+                "No se encontraron técnicos con ese nombre.")
+
+    def abrir_dialogo_agregar_tecnico(self):
+        dialogo = QDialog(self)
+        ui = Ui_dialogo_agregar_tecnico()
+        ui.setupUi(dialogo)
+
+        tecnicos = self.taller.listar_tecnicos()
+
+        ids = []
+
+        for tecnico in tecnicos:
+            try:
+                ids.append(int(tecnico.id))
+            except ValueError:
+                pass
+
+        if len(ids) > 0:
+            nuevo_id = max(ids) + 1
+        else:
+            nuevo_id = 1
+
+        ui.agregar_tec_id.setText(str(nuevo_id))
+
+        resultado = dialogo.exec()
+
+        if resultado == QDialog.DialogCode.Accepted:
+            id_tecnico = ui.agregar_tec_id.text().strip()
+            nombre = ui.agregar_tec_nombre.text().strip()
+            especialidad = ui.agregar_tec_especialidad.text().strip()
+
+            if id_tecnico == "" or nombre == "" or especialidad == "":
+                QMessageBox.warning(self,"Error",
+                    "Debes rellenar todos los campos.")
+                return
+
+            for tecnico in self.taller.listar_tecnicos():
+                if str(tecnico.id) == id_tecnico:
+                    QMessageBox.warning(self,
+                        "Error","Ya existe un técnico con ese ID.")
+                    return
+
+            tecnico = Tecnico(id_tecnico,nombre,especialidad)
+
+            try:
+                self.taller.alta_tecnico(tecnico)
+
+            except ValueError:
+                QMessageBox.warning(self,"Error",
+                                    "El técnico ya existe.")
+                return
+
+            guardar_taller(self.taller)
+
+            QMessageBox.information(
+                self,"Técnico añadido",
+                "El técnico se ha añadido correctamente.")
+
+            self.listar_todos_tecnicos()
 
 def main():
     app = QApplication(sys.argv)

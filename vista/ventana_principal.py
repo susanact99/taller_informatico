@@ -92,6 +92,7 @@ class Ui_MainWindow(object):
         self.reparaciones_tabla.setGeometry(QRect(10, 60, 761, 192))
         self.reparaciones_tabla.setAlternatingRowColors(True)
         self.reparaciones_tabla.horizontalHeader().setCascadingSectionResizes(False)
+        self.reparaciones_tabla.verticalHeader().setVisible(False)
         self.label = QLabel(self.reparaciones_tab)
         self.label.setObjectName(u"label")
         self.label.setGeometry(QRect(10, 20, 101, 21))
@@ -111,6 +112,9 @@ class Ui_MainWindow(object):
         self.tabla_clientes.setHorizontalHeaderItem(3, __qtablewidgetitem10)
         self.tabla_clientes.setObjectName(u"tabla_clientes")
         self.tabla_clientes.setGeometry(QRect(10, 60, 761, 192))
+        self.tabla_clientes.setTabKeyNavigation(True)
+        self.tabla_clientes.verticalHeader().setVisible(False)
+        self.tabla_clientes.verticalHeader().setCascadingSectionResizes(True)
         self.label_4 = QLabel(self.clientes_tab)
         self.label_4.setObjectName(u"label_4")
         self.label_4.setGeometry(QRect(40, 15, 49, 31))
@@ -140,6 +144,7 @@ class Ui_MainWindow(object):
         self.tabla_tecnicos.setHorizontalHeaderItem(2, __qtablewidgetitem13)
         self.tabla_tecnicos.setObjectName(u"tabla_tecnicos")
         self.tabla_tecnicos.setGeometry(QRect(10, 60, 751, 192))
+        self.tabla_tecnicos.verticalHeader().setVisible(False)
         self.label_5 = QLabel(self.tecnicos_tab)
         self.label_5.setObjectName(u"label_5")
         self.label_5.setGeometry(QRect(20, 20, 81, 16))
@@ -163,7 +168,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.paginas.setCurrentIndex(3)
+        self.paginas.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
