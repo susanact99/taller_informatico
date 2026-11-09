@@ -34,5 +34,14 @@
         "descripcion": "adsadasfadfadgfa",
         "estado": "en proceso",
         "coste": 97.0
+    },
+    {
+        "id": "5",
+        "cliente_id": "2",
+        "tecnico_id": "2",
+        "equipo": "Portátil",
+        "descripcion": "Reparación completada",
+        "estado": "finalizada",
+        "coste": 200.0
     }
 ]

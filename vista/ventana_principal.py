@@ -229,6 +229,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addLayout(self.horizontalLayout)
 
         self.reparaciones_tabla = QTableWidget(self.reparaciones_tab)
+        self.reparaciones_tabla.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         if (self.reparaciones_tabla.columnCount() < 7):
             self.reparaciones_tabla.setColumnCount(7)
         __qtablewidgetitem = QTableWidgetItem()
@@ -335,6 +336,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addLayout(self.horizontalLayout_3)
 
         self.tabla_clientes = QTableWidget(self.clientes_tab)
+        self.tabla_clientes.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         if (self.tabla_clientes.columnCount() < 4):
             self.tabla_clientes.setColumnCount(4)
         __qtablewidgetitem7 = QTableWidgetItem()
@@ -388,6 +390,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addLayout(self.horizontalLayout_4)
 
         self.tabla_tecnicos = QTableWidget(self.tecnicos_tab)
+        self.tabla_tecnicos.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         if (self.tabla_tecnicos.columnCount() < 3):
             self.tabla_tecnicos.setColumnCount(3)
         __qtablewidgetitem11 = QTableWidgetItem()

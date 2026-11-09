@@ -1,7 +1,6 @@
 import sys
 from PySide6.QtWidgets import (QMainWindow,QTableWidgetItem,
 QDialog,QMessageBox,QApplication)
-from PySide6.QtWidgets import QMessageBox
 from vista.dialogo_asignar_tecnico import Ui_Dialog_asignar_tecnico
 from vista.dialogo_modificar_coste import Ui_dialogo_modificar_coste
 from vista.dialogo_aniadir_reparacion import Ui_dialog_agregar_reparacion
@@ -49,8 +48,10 @@ class Controlador(QMainWindow):
         reparaciones = self.taller.listar_reparaciones()
 
         for reparacion in reparaciones:
-            if id_seleccionado == str(reparacion.tecnico.id):
-                reparaciones_filtradas.append(reparacion)
+            if reparacion.tecnico is not None:
+                if id_seleccionado == str(reparacion.tecnico.id):
+                    reparaciones_filtradas.append(reparacion)
+
 
         self.ui.reparaciones_tabla.setRowCount(len(reparaciones_filtradas))
         for fila, reparacion in enumerate(reparaciones_filtradas):
@@ -60,7 +61,7 @@ class Controlador(QMainWindow):
             self.ui.reparaciones_tabla.setItem(fila, 3, QTableWidgetItem(reparacion.equipo))
             self.ui.reparaciones_tabla.setItem(fila, 4, QTableWidgetItem(reparacion.descripcion))
             self.ui.reparaciones_tabla.setItem(fila, 5, QTableWidgetItem(reparacion.estado))
-            self.ui.reparaciones_tabla.setItem(fila, 6, QTableWidgetItem(reparacion.coste))
+            self.ui.reparaciones_tabla.setItem(fila, 6, QTableWidgetItem(str(reparacion.coste)))
 
     def filtrar_reparaciones_cliente_id(self):
         id_seleccionado = self.ui.filt_cliente_id.text()
@@ -81,7 +82,7 @@ class Controlador(QMainWindow):
             self.ui.reparaciones_tabla.setItem(fila,3,QTableWidgetItem(reparacion.equipo))
             self.ui.reparaciones_tabla.setItem(fila, 4, QTableWidgetItem(reparacion.descripcion))
             self.ui.reparaciones_tabla.setItem(fila, 5, QTableWidgetItem(reparacion.estado))
-            self.ui.reparaciones_tabla.setItem(fila, 6, QTableWidgetItem(reparacion.coste))
+            self.ui.reparaciones_tabla.setItem(fila, 6, QTableWidgetItem(str(reparacion.coste)))
 
     def abrir_dialogo_reparacion(self):
         dialogo = QDialog(self)
@@ -360,7 +361,7 @@ class Controlador(QMainWindow):
             self.ui.reparaciones_tabla.setItem(fila, 3, QTableWidgetItem(reparacion.equipo))
             self.ui.reparaciones_tabla.setItem(fila, 4, QTableWidgetItem(reparacion.descripcion))
             self.ui.reparaciones_tabla.setItem(fila, 5, QTableWidgetItem(reparacion.estado))
-            self.ui.reparaciones_tabla.setItem(fila, 6, QTableWidgetItem(reparacion.coste))
+            self.ui.reparaciones_tabla.setItem(fila, 6, QTableWidgetItem(str(reparacion.coste)))
 
     def listar_todos_clientes(self):
         clientes = self.taller.listar_clientes()
@@ -560,11 +561,35 @@ class Controlador(QMainWindow):
 
             self.listar_todos_tecnicos()
 
-def main():
-    app = QApplication(sys.argv)
-    ventana = Controlador()
-    ventana.show()
-    sys.exit(app.exec())
+    def mostrar_facturacion(self):
+        total = self.taller.facturacion_total()
+        mensaje = f"""
+        Facturación total del taller
+        Total facturado (IVA incluido): {total:.2f} €
+        """
+        QMessageBox.information(self,
+            "Facturación",mensaje)
 
-if __name__ == "__main__":
-    main()
+    def mostrar_estadisticas(self):
+        datos = self.taller.estadisticas()
+        mensaje = f"""
+        ESTADÍSTICAS DEL TALLER
+
+        Total de reparaciones: {datos['total_reparaciones']}
+
+        Reparaciones pendientes: {datos['pendientes']}
+
+        Reparaciones en proceso: {datos['en_proceso']}
+
+        Reparaciones finalizadas: {datos['finalizadas']}
+
+        Clientes con reparaciones: {datos['clientes_con_reparaciones']}
+        """
+
+        QMessageBox.information(
+            self,
+            "Estadísticas",
+            mensaje
+        )
+
+
