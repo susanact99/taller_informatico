@@ -119,6 +119,7 @@ class Ui_dialog_agregar_reparacion(object):
         self.label_4.setText(QCoreApplication.translate("dialog_agregar_reparacion", u"Equipo", None))
         self.label_7.setText(QCoreApplication.translate("dialog_agregar_reparacion", u"Coste", None))
         self.label_6.setText(QCoreApplication.translate("dialog_agregar_reparacion", u"Estado", None))
+        self.reparacion_estado.setPlaceholderText(QCoreApplication.translate("dialog_agregar_reparacion", u"(pendiente,en proceso, finalizada)", None))
         self.label_5.setText(QCoreApplication.translate("dialog_agregar_reparacion", u"Descripcion", None))
     # retranslateUi
 

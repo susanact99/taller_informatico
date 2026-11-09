@@ -25,5 +25,14 @@
         "descripcion": "Se rompio, no se sabe por qué",
         "estado": "pendiente",
         "coste": 200.0
+    },
+    {
+        "id": "4",
+        "cliente_id": "1",
+        "tecnico_id": "1",
+        "equipo": "uyfuly",
+        "descripcion": "adsadasfadfadgfa",
+        "estado": "en proceso",
+        "coste": 97.0
     }
 ]

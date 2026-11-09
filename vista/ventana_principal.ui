@@ -6,461 +6,584 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>811</width>
-    <height>435</height>
+    <width>786</width>
+    <height>481</height>
    </rect>
+  </property>
+  <property name="palette">
+   <palette>
+    <active>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>241</red>
+        <green>245</green>
+        <blue>249</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>241</red>
+        <green>245</green>
+        <blue>249</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>241</red>
+        <green>245</green>
+        <blue>249</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>241</red>
+        <green>245</green>
+        <blue>249</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>241</red>
+        <green>245</green>
+        <blue>249</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>241</red>
+        <green>245</green>
+        <blue>249</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>241</red>
+        <green>245</green>
+        <blue>249</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>241</red>
+        <green>245</green>
+        <blue>249</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>241</red>
+        <green>245</green>
+        <blue>249</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">
+/* FONDO GENERAL */
+QMainWindow {
+    background-color: #F1F5F9;
+}
+
+/* PESTAÑAS */
+QTabWidget::pane {
+    border: 1px solid #CBD5E1;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+}
+
+QTabBar::tab {
+    background-color: #E2E8F0;
+    color: #334155;
+    padding: 12px 20px;
+    margin-right: 3px;
+    font-size: 10pt;
+    font-weight: bold;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+QTabBar::tab:selected {
+    background-color: #2563EB;
+    color: white;
+}
+
+QTabBar::tab:hover {
+    background-color: #93C5FD;
+    color: #1E293B;
+}
+
+/* BOTONES */
+QPushButton {
+    background-color: #1E293B;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 14px;
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #334155;
+}
+
+QPushButton:pressed {
+    background-color: #0F172A;
+}
+
+QPushButton:disabled {
+    background-color: #94A3B8;
+    color: #E2E8F0;
+}
+
+
+/* CAMPOS DE TEXTO */
+QLineEdit, QComboBox {
+    background-color: white;
+    color: #1E293B;
+    border: 1px solid #CBD5E1;
+    border-radius: 5px;
+    padding: 7px;
+    font-size: 9pt;
+}
+
+QLineEdit:focus, QComboBox:focus {
+    border: 2px solid #2563EB;
+}
+
+/* TABLAS */
+QTableWidget {
+    background-color: white;
+    alternate-background-color: #F8FAFC;
+    color: #334155;
+    gridline-color: #E2E8F0;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+    font-size: 9pt;
+    selection-background-color: #DBEAFE;
+    selection-color: #1E293B;
+}
+
+/* CABECERAS DE TABLAS */
+QHeaderView::section {
+    background-color: #1E293B;
+    color: white;
+    padding: 9px;
+    border: none;
+    font-weight: bold;
+}
+
+/* ETIQUETAS */
+QLabel {
+    color: #334155;
+    font-size: 9pt;
+}
+
+/* BARRA DE ESTADO */
+QStatusBar {
+    background-color: #E2E8F0;
+    color: #334155;
+    border-top: 1px solid #CBD5E1;
+}
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="paginas">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>791</width>
-      <height>401</height>
-     </rect>
-    </property>
-    <property name="currentIndex">
-     <number>1</number>
-    </property>
-    <widget class="QWidget" name="TallerInformatico">
-     <attribute name="title">
-      <string>Taller💻</string>
-     </attribute>
-     <widget class="QLabel" name="label_6">
-      <property name="geometry">
-       <rect>
-        <x>148</x>
-        <y>105</y>
-        <width>281</width>
-        <height>61</height>
-       </rect>
+   <layout class="QVBoxLayout" name="verticalLayout_4">
+    <item>
+     <widget class="QTabWidget" name="paginas">
+      <property name="currentIndex">
+       <number>3</number>
       </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:700; color:#000000;&quot;&gt;Gestión del Taller&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_7">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>180</y>
-        <width>51</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt;&quot;&gt;🖨&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_8">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>190</y>
-        <width>51</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt;&quot;&gt;💻&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_9">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>190</y>
-        <width>51</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt;&quot;&gt;⌨&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="reparaciones_tab">
-     <property name="cursor">
-      <cursorShape>ArrowCursor</cursorShape>
-     </property>
-     <attribute name="title">
-      <string>Reparaciones 🛠</string>
-     </attribute>
-     <widget class="QPushButton" name="aniadir_reparacion">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>280</y>
-        <width>111</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="text">
-       <string>Añadir reparación</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="listar_reparaciones">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>280</y>
-        <width>111</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Listar reparaciones</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="asignar_tecnico">
-      <property name="geometry">
-       <rect>
-        <x>350</x>
-        <y>280</y>
-        <width>101</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Asignar técnico</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="cambiar_estado">
-      <property name="geometry">
-       <rect>
-        <x>600</x>
-        <y>280</y>
-        <width>91</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Cambiar estado</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="modificar_coste">
-      <property name="geometry">
-       <rect>
-        <x>480</x>
-        <y>280</y>
-        <width>91</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Modificar coste</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="estados_filtro">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>20</y>
-        <width>91</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>Todos</string>
+      <widget class="QWidget" name="TallerInformatico">
+       <attribute name="title">
+        <string>Taller💻</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:700; color:#000000;&quot;&gt;Gestión del Taller&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt;&quot;&gt;🖨&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt;&quot;&gt;💻&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt;&quot;&gt;⌨&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="reparaciones_tab">
+       <property name="cursor">
+        <cursorShape>ArrowCursor</cursorShape>
        </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>pendiente </string>
+       <attribute name="title">
+        <string>Reparaciones 🛠</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Filtrar por estados</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="estados_filtro">
+            <property name="placeholderText">
+             <string/>
+            </property>
+            <item>
+             <property name="text">
+              <string>Todos</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>pendiente</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>en proceso</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>finalizada</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Filtrar por id_cliente:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="filt_cliente_id"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Filtrar por id_tecnico:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="filt_tecnico_id"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="reparaciones_tabla">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <attribute name="horizontalHeaderCascadingSectionResizes">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="verticalHeaderStretchLastSection">
+           <bool>false</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>id</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>cliente_id</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>tecnico_id</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>equipo</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>descripcion</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>estado</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>coste</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QPushButton" name="listar_reparaciones">
+            <property name="text">
+             <string>Listar reparaciones</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="aniadir_reparacion">
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Añadir reparación</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="asignar_tecnico">
+            <property name="text">
+             <string>Asignar técnico</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="modificar_coste">
+            <property name="text">
+             <string>Modificar coste</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="cambiar_estado">
+            <property name="text">
+             <string>Cambiar estado</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QPushButton" name="facturacion_boton">
+            <property name="text">
+             <string>Facturación</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="estadisticas_boton">
+            <property name="text">
+             <string>Estadísticas</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="clientes_tab">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clientes&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>en proceso</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>finalizada</string>
-       </property>
-      </item>
+       <attribute name="title">
+        <string>Clientes 🙍🏻‍♂️</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Nombre</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="nombre_client_filtro"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="buscar_nombre_client">
+            <property name="text">
+             <string>Buscar 🔍</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="listar_clientes">
+            <property name="text">
+             <string>Listar clientes</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="aniadir_cliente">
+            <property name="text">
+             <string>Añadir cliente</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tabla_clientes">
+          <property name="tabKeyNavigation">
+           <bool>true</bool>
+          </property>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="verticalHeaderCascadingSectionResizes">
+           <bool>true</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>id</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>nombre</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>correo</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>telefono</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tecnicos_tab">
+       <attribute name="title">
+        <string>Técnicos 👷🏻‍♂️</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Nombre</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="input_busc_nom_tec"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="buscar_tec_nombre">
+            <property name="text">
+             <string>Buscar 🔍</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="agregar_tecnico">
+            <property name="text">
+             <string>Añadir técnico</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="listar_tecnicos">
+            <property name="text">
+             <string>Listar técnicos</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tabla_tecnicos">
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>id</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>nombre</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>especialidad</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
-     <widget class="QTableWidget" name="reparaciones_tabla">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>60</y>
-        <width>761</width>
-        <height>192</height>
-       </rect>
-      </property>
-      <property name="alternatingRowColors">
-       <bool>true</bool>
-      </property>
-      <attribute name="horizontalHeaderCascadingSectionResizes">
-       <bool>false</bool>
-      </attribute>
-      <attribute name="verticalHeaderVisible">
-       <bool>false</bool>
-      </attribute>
-      <column>
-       <property name="text">
-        <string>id</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>cliente_id</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>tecnico_id</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>equipo</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>descripcion</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>estado</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>coste</string>
-       </property>
-      </column>
-     </widget>
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>101</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Filtrar por estados</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="clientes_tab">
-     <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clientes&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <attribute name="title">
-      <string>Clientes 🙍🏻‍♂️</string>
-     </attribute>
-     <widget class="QTableWidget" name="tabla_clientes">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>60</y>
-        <width>761</width>
-        <height>192</height>
-       </rect>
-      </property>
-      <property name="tabKeyNavigation">
-       <bool>true</bool>
-      </property>
-      <attribute name="verticalHeaderVisible">
-       <bool>false</bool>
-      </attribute>
-      <attribute name="verticalHeaderCascadingSectionResizes">
-       <bool>true</bool>
-      </attribute>
-      <column>
-       <property name="text">
-        <string>id</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>nombre</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>correo</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>telefono</string>
-       </property>
-      </column>
-     </widget>
-     <widget class="QLabel" name="label_4">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>15</y>
-        <width>49</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Nombre</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="nombre_client_filtro">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>20</y>
-        <width>113</width>
-        <height>21</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="buscar_nombre_client">
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>20</y>
-        <width>75</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Buscar 🔍</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="aniadir_cliente">
-      <property name="geometry">
-       <rect>
-        <x>410</x>
-        <y>20</y>
-        <width>101</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Añadir cliente</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="listar_clientes">
-      <property name="geometry">
-       <rect>
-        <x>310</x>
-        <y>20</y>
-        <width>91</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Listar clientes</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tecnicos_tab">
-     <attribute name="title">
-      <string>Técnicos 👷🏻‍♂️</string>
-     </attribute>
-     <widget class="QTableWidget" name="tabla_tecnicos">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>60</y>
-        <width>751</width>
-        <height>192</height>
-       </rect>
-      </property>
-      <attribute name="verticalHeaderVisible">
-       <bool>false</bool>
-      </attribute>
-      <column>
-       <property name="text">
-        <string>id</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>nombre</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>especialidad</string>
-       </property>
-      </column>
-     </widget>
-     <widget class="QLabel" name="label_5">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>81</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Nombre</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="input_busc_nom_tec">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>20</y>
-        <width>141</width>
-        <height>21</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="buscar_tec_nombre">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>20</y>
-        <width>81</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Buscar 🔍</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="agregar_tecnico">
-      <property name="geometry">
-       <rect>
-        <x>360</x>
-        <y>20</y>
-        <width>91</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Añadir técnico</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="listar_tecnicos">
-      <property name="geometry">
-       <rect>
-        <x>470</x>
-        <y>20</y>
-        <width>91</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Listar técnicos</string>
-      </property>
-     </widget>
-    </widget>
-   </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

@@ -8,5 +8,10 @@
         "id": "2",
         "nombre": "Tecnico 2",
         "especialidad": "Mantenimiento"
+    },
+    {
+        "id": "3",
+        "nombre": "Marcos",
+        "especialidad": "Electronica"
     }
 ]
